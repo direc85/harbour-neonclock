@@ -16,15 +16,14 @@ CONFIG += sailfishapp_qml
 
 DISTFILES += qml/harbour-neonclock.qml \
     qml/cover/CoverPage.qml \
-    rpm/harbour-neonclock.changes.in \
-    rpm/harbour-neonclock.changes.run.in \
     rpm/harbour-neonclock.spec \
     rpm/harbour-neonclock.yaml \
     translations/*.ts \
     harbour-neonclock.desktop \
     qml/components/NeonClock.qml \
     qml/pages/MainPage.qml \
-    qml/pages/About.qml
+    qml/pages/About.qml \
+    rpm/harbour-neonclock.changes
 
 SAILFISHAPP_ICONS = 86x86 108x108 128x128 172x172
 
