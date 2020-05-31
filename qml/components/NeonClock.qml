@@ -21,7 +21,7 @@ Canvas {
         var h_f = h + m_f / 60.0
 
         // Origin to the center, 0 degrees is up
-        ctx.setTransform(1,0,0,1,width/2,width/2)
+        ctx.setTransform(1, 0, 0, 1, width/2, width/2)
         ctx.rotate(-Math.PI/2)
 
         // Clear!
@@ -37,79 +37,76 @@ Canvas {
         ctx.lineCap = 'round'
 
         if(!coverMode) {
+            // Pendulum dot
+            var pendulumSwing = s_f / 60.0 * Math.PI * 30
+            var pendulumAngle = Math.sin(pendulumSwing) * Math.PI/6 + Math.PI/2
+            ctx.rotate(pendulumAngle);
+            ctx.beginPath()
+            ctx.strokeStyle = 'rgb(255, 255, 255)'
+            ctx.lineWidth = drawUnit * 1.5;
+            ctx.moveTo(0, drawUnit * 5 - 0.01)
+            ctx.lineTo(0, drawUnit * 5 + 0.01)
+            ctx.stroke()
+            ctx.rotate(-pendulumAngle)
+
             // Seconds arc
             ctx.beginPath()
             ctx.strokeStyle = 'rgb(255, 100, 150)'
             ctx.lineWidth = drawUnit;
-            ctx.moveTo(drawUnit*19,0)
-            ctx.arc(0, 0, drawUnit*19, 0, secondAngle, m % 2 == 1)
+            ctx.moveTo(drawUnit * 19,0)
+            ctx.arc(0, 0, drawUnit * 19, 0, secondAngle, m % 2 == 1)
             ctx.stroke()
 
             // Minutes arc
             ctx.beginPath()
             ctx.strokeStyle = 'rgb(150, 100, 255)'
-            ctx.moveTo(drawUnit*21,0)
+            ctx.moveTo(drawUnit * 21,0)
 
-            ctx.arc(0, 0, drawUnit*21, 0, minuteAngle, h % 2 == 1)
+            ctx.arc(0, 0, drawUnit * 21, 0, minuteAngle, h % 2 == 1)
             ctx.stroke()
-            ctx.closePath()
 
             // Hours arc
             ctx.beginPath()
             ctx.strokeStyle = 'rgb(150, 255, 100)'
 
-            ctx.moveTo(drawUnit*23, 0)
-            ctx.arc(0, 0, drawUnit*23, 0, hourAngle, h>=12)
+            ctx.moveTo(drawUnit * 23, 0)
+            ctx.arc(0, 0, drawUnit * 23, 0, hourAngle, h>=12)
             ctx.stroke()
-            ctx.closePath()
         }
 
         // Hours hand
         ctx.rotate(hourAngle);
         ctx.beginPath()
         ctx.strokeStyle = 'rgb(150, 255, 100)'
-        ctx.lineWidth = drawUnit*1.5;
-        ctx.moveTo(0,0)
-        ctx.lineTo(drawUnit*9, 0);
+        ctx.lineWidth = drawUnit * 1.5;
+        ctx.moveTo(0, 0)
+        ctx.lineTo(drawUnit * 9, 0);
         ctx.stroke()
-        ctx.closePath()
 
         // Minutes hand
         ctx.rotate(minuteAngle-hourAngle);
         ctx.beginPath()
         ctx.strokeStyle = 'rgb(150, 100, 255)'
-        ctx.lineWidth = drawUnit*1.2;
-        ctx.moveTo(0,0)
-        ctx.lineTo(drawUnit*12, 0);
+        ctx.lineWidth = drawUnit * 1.2;
+        ctx.moveTo(0, 0)
+        ctx.lineTo(drawUnit * 12, 0);
         ctx.stroke()
-        ctx.closePath()
 
         // Seconds hand
         ctx.rotate(secondAngle-minuteAngle);
         ctx.beginPath()
         ctx.strokeStyle = 'rgb(255, 100, 150)'
         ctx.lineWidth = drawUnit;
-        ctx.moveTo(0,0)
-        ctx.lineTo(drawUnit*15, 0);
+        ctx.moveTo(0, 0)
+        ctx.lineTo(drawUnit * 15, 0);
         ctx.stroke()
-        ctx.closePath()
 
-        // Pendulum point and center dot
-        var pendulumSwing = s_f / 60.0 * Math.PI * 30
-        var pendulumAngle = Math.sin(pendulumSwing) * Math.PI/6 + Math.PI/2
-        ctx.rotate(pendulumAngle-secondAngle);
+        // Center dot
         ctx.beginPath()
         ctx.strokeStyle = 'rgb(255, 255, 255)'
-        if(!coverMode) {
-            ctx.lineWidth = drawUnit;
-            ctx.moveTo(0, drawUnit*5-0.01)
-            ctx.lineTo(0, drawUnit*5+0.01)
-            ctx.stroke()
-        }
-        ctx.lineWidth = drawUnit*2
+        ctx.lineWidth = drawUnit * 2
         ctx.moveTo(0, -0.01)
         ctx.lineTo(0, 0.01)
         ctx.stroke()
-        ctx.closePath()
     }
 }
