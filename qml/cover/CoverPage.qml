@@ -18,12 +18,13 @@ CoverBackground {
     Rectangle {
         anchors.fill: parent
         color: 'black'
+        opacity: 0.625
     }
 
     NeonClock {
         id: coverClock
-        width: parent.width
-        height: parent.width
+        width: parent.width * 0.9
+        height: parent.width * 0.9
         coverMode: true
         anchors.centerIn: parent
     }
