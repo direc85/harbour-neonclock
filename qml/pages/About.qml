@@ -18,7 +18,7 @@ Page {
         Column {
             id: aboutColumn
             width: parent.width - 2*Theme.paddingLarge
-            x: Theme.paddingLarge
+            anchors.horizontalCenter: parent.horizontalCenter
             spacing: Theme.paddingMedium
 
             PageHeader {
@@ -109,6 +109,29 @@ Page {
                     anchors.centerIn: rightRect
                     icon.source: "image://theme/icon-m-train"
                     onClicked: Qt.openUrlExternally("http://codingtra.in");
+                }
+            }
+
+            Label {
+                width: parent.width
+                wrapMode: Text.WordWrap
+                text: "This is just a silly clock made for practicing QML Canvas, but if you really, really like it, you can buy me a coffee!"
+            }
+
+            BackgroundItem {
+                anchors.horizontalCenter: parent.horizontalCenter
+                width: Theme.iconSizeExtraLarge
+                height: Theme.iconSizeExtraLarge
+                onClicked: Qt.openUrlExternally("https://ko-fi.com/direc85")
+                contentItem.radius: Theme.paddingSmall
+
+                Image {
+                    anchors.centerIn: parent
+                    source: Qt.resolvedUrl("/usr/share/harbour-neonclock/images/Ko-fi_Icon_RGB_rounded.png")
+                    width: Theme.iconSizeExtraLarge
+                    height: Theme.iconSizeExtraLarge
+                    smooth: true
+                    asynchronous: true
                 }
             }
 
