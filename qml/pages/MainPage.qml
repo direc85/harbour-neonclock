@@ -5,9 +5,9 @@ import "../components"
 Page {
     id: page
     allowedOrientations: Orientation.All
+    property real newOpacity: 1.0
 
     SilicaFlickable {
-        enabled: isPortrait
         anchors.fill: parent
         contentHeight: parent.height
 
@@ -17,8 +17,12 @@ Page {
         }
 
         PullDownMenu {
-            enabled: isPortrait
-            visible: isPortrait
+            enabled: opacity > 0.0
+            opacity: newOpacity
+            Behavior on opacity {
+                NumberAnimation {}
+            }
+
             MenuItem {
                 text: qsTr("About")
                 onClicked: pageStack.push(Qt.resolvedUrl("About.qml"))
@@ -35,7 +39,11 @@ Page {
 
         PageHeader {
             title: qsTr("Neon Clock")
-            visible: isPortrait
+            visible: opacity > 0.0
+            opacity: newOpacity
+            Behavior on opacity {
+                NumberAnimation {}
+            }
         }
 
 
@@ -45,6 +53,15 @@ Page {
             height: width
             coverMode: false
             anchors.centerIn: parent
+            MouseArea {
+                anchors.fill: parent
+                onClicked: {
+                    if(newOpacity === 1.0)
+                        newOpacity = 0.0
+                    else
+                        newOpacity = 1.0
+                }
+            }
         }
     }
 }
