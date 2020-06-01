@@ -5,6 +5,8 @@ Canvas {
     anchors.centerIn: parent
     property bool coverMode: false
     property real drawUnit: width / (coverMode ? 32 : 50)
+    renderStrategy: Canvas.Threaded
+    renderTarget: Canvas.FramebufferObject
     onPaint: {
         var ctx = getContext("2d")
 
