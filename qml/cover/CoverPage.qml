@@ -9,7 +9,7 @@ CoverBackground {
 
     Timer {
         id: coverClockTimer
-        interval: 1000/15
+        interval: 1000/30
         repeat: true
         running: cover.status == Cover.Active
         onTriggered: coverClock.requestPaint()

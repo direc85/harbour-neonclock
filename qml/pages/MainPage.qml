@@ -27,7 +27,7 @@ Page {
 
         Timer {
             id: clockDrawTimer
-            interval: 1000/25
+            interval: 1000/30
             running: parent.visible
             repeat: true
             onTriggered: clock.requestPaint()
