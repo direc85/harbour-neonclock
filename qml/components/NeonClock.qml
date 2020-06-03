@@ -5,6 +5,7 @@ Canvas {
     anchors.centerIn: parent
     property bool coverMode: false
     property real drawUnit: width / (coverMode ? 32 : 50)
+    readonly property bool canPaint: coverMode || Qt.application.active
 
     property var now
 
@@ -24,6 +25,8 @@ Canvas {
     renderStrategy: Canvas.Threaded
     renderTarget: Canvas.FramebufferObject
     onPaint: {
+        if (!canPaint) return
+
         now = new Date()
         ms = now.getMilliseconds()
         s = now.getSeconds()
