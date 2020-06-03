@@ -1,9 +1,12 @@
-* Sun May 31 2020 Matti Viljanen (direc85) <matti.viljanen@kapsi.fi> 1.1-1
+* Thu Jun 04 2020 Matti Viljanen (direc85) <matti.viljanen@kapsi.fi> 1.3-1
+- Fix a crash while locking/unlocking the screen (thanks, monich)
+
+* Sun May 31 2020 Matti Viljanen (direc85) <matti.viljanen@kapsi.fi> 1.2-1
 - Remove translations
 - Tweak drawing routine
 - Update clock 25 times a second
 
-* Mon Dec 10 2018 Matti Viljanen (direc85) <matti.viljanen@kapsi.fi> 1.0-1
+* Mon Dec 10 2018 Matti Viljanen (direc85) <matti.viljanen@kapsi.fi> 1.1-1
 - Initial release
 - Hide title and pulley when on landscape
 - Updates clock 15 timer per second
