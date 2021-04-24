@@ -1,3 +1,7 @@
+* Sun Apr 24 2021 Matti Viljanen (direc85) <matti.viljanen@kapsi.fi> 1.4-1
+- Hide/show the pendulum
+- Hide/show the seconds hand and ring
+
 * Thu Jun 04 2020 Matti Viljanen (direc85) <matti.viljanen@kapsi.fi> 1.3-1
 - Fix a crash while locking/unlocking the screen (thanks, monich)
 
@@ -11,7 +15,7 @@
 - Tweak drawing routine
 - Update clock 25 times a second
 
-* Mon Dec 10 2018 Matti Viljanen (direc85) <matti.viljanen@kapsi.fi> 1.1-1
+* Mon Dec 10 2018 Matti Viljanen (direc85) <matti.viljanen@kapsi.fi> 1.0-1
 - Initial release
 - Hide title and pulley when on landscape
 - Updates clock 15 timer per second

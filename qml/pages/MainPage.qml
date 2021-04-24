@@ -24,16 +24,16 @@ Page {
             }
 
             MenuItem {
-                text: clock.drawPendulum ? qsTr("Hide pendulum") : qsTr("Show pendulum")
-                onClicked: clock.drawPendulum = !clock.drawPendulum
+                text: qsTr("About")
+                onClicked: pageStack.push(Qt.resolvedUrl("About.qml"))
             }
             MenuItem {
                 text: clock.drawSeconds ? qsTr("Hide seconds") : qsTr("Show seconds")
                 onClicked: drawSecondsGlobal = !drawSecondsGlobal
             }
             MenuItem {
-                text: qsTr("About")
-                onClicked: pageStack.push(Qt.resolvedUrl("About.qml"))
+                text: clock.drawPendulum ? qsTr("Hide pendulum") : qsTr("Show pendulum")
+                onClicked: clock.drawPendulum = !clock.drawPendulum
             }
         }
 
