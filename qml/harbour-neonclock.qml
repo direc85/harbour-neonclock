@@ -4,6 +4,7 @@ import "pages"
 
 ApplicationWindow
 {
+    property bool drawSecondsGlobal: true
     initialPage: Qt.resolvedUrl("pages/MainPage.qml")
     cover: Qt.resolvedUrl("cover/CoverPage.qml")
     allowedOrientations: Orientation.All

@@ -24,6 +24,14 @@ Page {
             }
 
             MenuItem {
+                text: clock.drawPendulum ? qsTr("Hide pendulum") : qsTr("Show pendulum")
+                onClicked: clock.drawPendulum = !clock.drawPendulum
+            }
+            MenuItem {
+                text: clock.drawSeconds ? qsTr("Hide seconds") : qsTr("Show seconds")
+                onClicked: drawSecondsGlobal = !drawSecondsGlobal
+            }
+            MenuItem {
                 text: qsTr("About")
                 onClicked: pageStack.push(Qt.resolvedUrl("About.qml"))
             }
@@ -31,10 +39,11 @@ Page {
 
         Timer {
             id: clockDrawTimer
-            interval: 1000/30
+            interval: (clock.drawSeconds || clock.drawPendulum) ? 1000/30 : 1000
             running: parent.visible
             repeat: true
             onTriggered: clock.requestPaint()
+            onIntervalChanged: clock.requestPaint()
         }
 
         PageHeader {
@@ -52,6 +61,7 @@ Page {
             width: isPortrait ? parent.width : parent.height
             height: width
             coverMode: false
+            drawSeconds: drawSecondsGlobal
             anchors.centerIn: parent
             MouseArea {
                 anchors.fill: parent

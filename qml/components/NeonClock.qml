@@ -6,6 +6,8 @@ Canvas {
     property bool coverMode: false
     property real drawUnit: width / (coverMode ? 32 : 50)
     readonly property bool canPaint: coverMode || Qt.application.active
+    property bool drawPendulum: true
+    property bool drawSeconds: true
 
     property var now
 
@@ -54,29 +56,34 @@ Canvas {
         ctx.lineCap = 'round'
 
         if(!coverMode) {
-            // Pendulum dot
-            var pendulumSwing = s_f / 60.0 * Math.PI * 30
-            var pendulumAngle = Math.sin(pendulumSwing) * Math.PI/6 + Math.PI/2
-            ctx.rotate(pendulumAngle);
-            ctx.beginPath()
-            ctx.strokeStyle = 'rgb(255, 255, 255)'
-            ctx.lineWidth = drawUnit * 1.5;
-            ctx.moveTo(0, drawUnit * 5 - 0.01)
-            ctx.lineTo(0, drawUnit * 5 + 0.01)
-            ctx.stroke()
-            ctx.rotate(-pendulumAngle)
+            if(drawPendulum) {
+                // Pendulum dot
+                var pendulumSwing = s_f / 60.0 * Math.PI * 30
+                var pendulumAngle = Math.sin(pendulumSwing) * Math.PI/6 + Math.PI/2
+                ctx.rotate(pendulumAngle);
+                ctx.beginPath()
+                ctx.strokeStyle = 'rgb(255, 255, 255)'
+                ctx.lineWidth = drawUnit * 1.5;
+                ctx.moveTo(0, drawUnit * 5 - 0.01)
+                ctx.lineTo(0, drawUnit * 5 + 0.01)
+                ctx.stroke()
+                ctx.rotate(-pendulumAngle)
+            }
 
-            // Seconds arc
-            ctx.beginPath()
-            ctx.strokeStyle = 'rgb(255, 100, 150)'
-            ctx.lineWidth = drawUnit;
-            ctx.moveTo(drawUnit * 19,0)
-            ctx.arc(0, 0, drawUnit * 19, 0, secondAngle, m % 2 == 1)
-            ctx.stroke()
+            if(drawSeconds) {
+                // Seconds arc
+                ctx.beginPath()
+                ctx.strokeStyle = 'rgb(255, 100, 150)'
+                ctx.lineWidth = drawUnit;
+                ctx.moveTo(drawUnit * 19,0)
+                ctx.arc(0, 0, drawUnit * 19, 0, secondAngle, m % 2 == 1)
+                ctx.stroke()
+            }
 
             // Minutes arc
             ctx.beginPath()
             ctx.strokeStyle = 'rgb(150, 100, 255)'
+            ctx.lineWidth = drawUnit;
             ctx.moveTo(drawUnit * 21,0)
 
             ctx.arc(0, 0, drawUnit * 21, 0, minuteAngle, h % 2 == 1)
@@ -109,14 +116,17 @@ Canvas {
         ctx.lineTo(drawUnit * 12, 0);
         ctx.stroke()
 
-        // Seconds hand
-        ctx.rotate(secondAngle-minuteAngle);
-        ctx.beginPath()
-        ctx.strokeStyle = 'rgb(255, 100, 150)'
-        ctx.lineWidth = drawUnit;
-        ctx.moveTo(0, 0)
-        ctx.lineTo(drawUnit * 15, 0);
-        ctx.stroke()
+        if(drawSeconds)
+        {
+            // Seconds hand
+            ctx.rotate(secondAngle-minuteAngle);
+            ctx.beginPath()
+            ctx.strokeStyle = 'rgb(255, 100, 150)'
+            ctx.lineWidth = drawUnit;
+            ctx.moveTo(0, 0)
+            ctx.lineTo(drawUnit * 15, 0);
+            ctx.stroke()
+        }
 
         // Center dot
         ctx.beginPath()

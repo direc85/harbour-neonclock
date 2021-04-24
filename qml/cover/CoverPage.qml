@@ -9,7 +9,7 @@ CoverBackground {
 
     Timer {
         id: coverClockTimer
-        interval: 1000/30
+        interval: coverClock.drawSeconds ? 1000/30 : 1000
         repeat: true
         running: cover.status == Cover.Active
         onTriggered: coverClock.requestPaint()
@@ -23,6 +23,7 @@ CoverBackground {
 
     NeonClock {
         id: coverClock
+        drawSeconds: drawSecondsGlobal
         width: parent.width * 0.9
         height: parent.width * 0.9
         coverMode: true
